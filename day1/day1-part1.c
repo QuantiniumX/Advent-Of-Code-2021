@@ -1,6 +1,5 @@
 //Advent of Code 2021 Day 1
 #include <stdio.h>
-#include <stdlib.h>
 
 int main() {
     int count = 0;
