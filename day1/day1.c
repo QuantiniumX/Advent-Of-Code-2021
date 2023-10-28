@@ -1,27 +1,27 @@
-#include "stdio.h"
-#include "string.h"
-#include "stdlib.h"
+#include <stdio.h>
+#include <stdlib.h>
 
 int main() {
-    char line[2000][2001];
-    int i = 0;
-    int number[2001];
     int count = 0;
-    FILE *fp = fopen("./text", "r");
-    while( fgets(line[i], 100, fp) != NULL) {
-        line[i][strlen(line[i]) - 1] = '\0';
-        i++;
+    FILE *fp = fopen("./test.txt", "r");
+
+    if (fp == NULL) {
+        perror("Error opening file");
+        return 1;
     }
-    int tot = i;
-    for(int i = 0; i < 2001;i++) {
-        number[i] = atoi(line[i]);
-    }
-    for(int i = 0; i < 1999;i++){
-        printf("%d > %d\n", number[i + 1], number[i]);
-        if((int) number[i + 1] > number[i]) {
-            count++;
+
+    int previousNumber, currentNumber;
+    if (fscanf(fp, "%d", &previousNumber) == 1) {
+        while (fscanf(fp, "%d", &currentNumber) == 1) {
+            if (currentNumber > previousNumber) {
+                count++;
+            }
+            previousNumber = currentNumber;
         }
     }
-    printf("%d", count);
+
+    fclose(fp);
+
+    printf("Count: %d\n", count);
     return 0;
 }
