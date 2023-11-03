@@ -19,6 +19,7 @@ int main() {
   int sumSize = size - 2;
   int sumOfThree[sumSize];
   int number[size];
+
   for (int i = 0; i < size; ++i) {
     fscanf(fp, "%d", &currentNumber);
     number[i] = currentNumber;
