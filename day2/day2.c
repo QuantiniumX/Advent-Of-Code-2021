@@ -4,7 +4,7 @@
 int main() {
     char line[100];
     char action[20];
-    int value, forward = 0, depth = 0;
+    int value, forward = 0, depth = 0, aim = 0;
 
 
     FILE *fp = fopen("./test.txt", "r");    
@@ -12,12 +12,13 @@ int main() {
         if(sscanf(line, "%19s %d", action, &value) == 2){
             if(strcmp(action, "forward") == 0){
                 forward += value;
+                depth += (aim * value);
             }
             else if(strcmp(action, "down") == 0){
-                depth += value;
+                aim += value;
             }
             else if(strcmp(action, "up") == 0){
-                depth -= value;
+                aim -= value;
             }
         }
     }
